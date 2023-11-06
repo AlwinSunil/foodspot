@@ -1,0 +1,399 @@
+:root {
+  --color-accent: #eb1700;
+  --color-accent-light: rgba(235, 23, 0, 0.15);
+  --color-accent-lighter: rgba(235, 23, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.1s ease-in-out;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 999;
+}
+
+.scroll {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 18px 0px, #eee 0px 0px 0px 0.5px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #000;
+  text-decoration: none;
+}
+
+.logo img {
+  height: 2.25rem;
+}
+
+.wordmark {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.nav-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-btn:hover {
+  cursor: pointer;
+}
+
+.nav-btn-search {
+  background-color: var(--color-accent-light);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: auto;
+  padding: 0.6rem;
+}
+
+.nav-btn-random {
+  background-color: var(--color-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+  border-radius: 4rem;
+  padding: 0.4rem 1.5rem 0.4rem 1.4rem;
+}
+
+header {
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hero-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-greeting {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.hero-text {
+  font-size: 2rem;
+  color: var(--color-accent);
+  font-weight: 700;
+  width: 20ch;
+  line-height: 2.5rem;
+}
+
+.hero-action {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.hero-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  width: fit-content;
+  border: 2px solid var(--color-accent-light);
+}
+
+.hero-btn:hover {
+  cursor: pointer;
+  box-shadow: var(--color-accent-light) 0px 8px 12px -4px,
+    var(--color-accent-lighter) 0px 4px 6px -2px;
+}
+
+.hero-btn-discover {
+  background-color: var(--color-accent);
+  color: #fff;
+  padding: 0.5rem 1.5rem 0.5rem 1.4rem;
+}
+
+.hero-btn-search {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+  font-weight: 600;
+  padding: 0.5rem 1.5rem 0.5rem 1.2rem;
+}
+
+.hero-video {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.hero-video video {
+  border-radius: 1rem;
+  margin: auto;
+  width: 100%;
+}
+
+.hero-video-source {
+  position: absolute;
+  bottom: 0;
+  padding: 0.25rem 0.5rem;
+  right: 0;
+  background: #000;
+  font-weight: 500;
+  color: #fff;
+  font-size: 0.8rem;
+  border-radius: 0 0 1rem 0;
+}
+
+.meal {
+  padding: 6rem 4rem;
+}
+
+.meal-header {
+  font-weight: 500;
+}
+
+.meal-header span {
+  opacity: 0.8;
+}
+
+.meal-content {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.meal-desc {
+  padding: 1.5rem;
+  border-radius: 0 1rem 1rem 1rem;
+  background-color: var(--color-accent-lighter);
+  width: 100%;
+}
+
+.meal-img {
+  width: 20rem;
+  height: 100%;
+  border-radius: 1rem 0 1rem 1rem;
+}
+
+.meal-label-name,
+.meal-label-ingredients,
+.meal-label-instructions {
+  color: var(--color-accent);
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.2rem;
+}
+
+.meal-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #000;
+  line-height: 1.75rem;
+}
+
+.meal-ingredients {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.meal-ingredient {
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--color-accent);
+  text-transform: capitalize;
+  gap: 1rem;
+  line-height: 1.2rem;
+  border-radius: 0.25rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.meal-ingredient img {
+  width: 2.5rem;
+}
+
+.ribbon {
+  display: flex;
+  gap: 4rem;
+  padding: 1rem 2rem;
+  background-color: var(--color-accent-light);
+}
+
+.data {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.data-img {
+  height: 4rem;
+  border-radius: 4rem;
+  border: 2px solid #fff;
+}
+
+.data-desc {
+  font-weight: 600;
+}
+
+.data-count {
+  font-weight: 400;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+  background-color: var(--color-accent-lighter);
+}
+
+.footer-foodspot {
+  display: flex;
+  flex-direction: row;
+  padding: 4rem 0;
+}
+
+.footer-credits {
+  border-top: 1px solid var(--color-accent-light);
+  padding: 1.5rem 0.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-about,
+.footer-links {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-header {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.footer-links {
+  gap: 0.5rem;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.footer-desc {
+  font-weight: 400;
+  margin-top: 0.25rem;
+}
+
+.footer-developer a {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.footer-api a {
+  color: black;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 600px) {
+  nav {
+    padding: 1rem;
+  }
+
+  .logo {
+    gap: 0.5rem;
+  }
+
+  .nav-btn-random {
+    display: none;
+  }
+
+  header {
+    padding: 2rem 1rem;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-text {
+    width: 100%;
+  }
+
+  .hero-action {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .hero-btn-discover {
+    padding: 0.5rem 1rem;
+  }
+
+  .meal {
+    padding: 4rem 1rem;
+  }
+
+  .meal-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .meal-img {
+    margin: auto;
+    max-width: 24rem;
+    width: 100%;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .meal-desc {
+    border-radius: 0 0 1rem 1rem;
+  }
+
+  .meal-label-name {
+    margin-top: 0.5rem;
+  }
+
+  .ribbon {
+    overflow-x: scroll;
+    gap: 2rem;
+    line-height: 1.25rem;
+  }
+
+  footer {
+    padding: 0 1rem;
+  }
+
+  .footer-foodspot {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 3rem 0;
+  }
+
+  .footer-credits {
+    flex-direction: column;
+    gap: 1rem;
+    /* text-align: center; */
+  }
+}
