@@ -17,20 +17,15 @@
         <div class="logo">
             <img src="./public/logo.svg" alt="" /><span class="wordmark">FoodSpot</span>
         </div>
-        <div class="nav-btn nav-btn-search">
+        <a href="/#search" class="nav-btn nav-btn-search">
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                 <path fill="#eb1700"
                     d="M378.087-314.5q-111.152 0-188.326-77.174Q112.587-468.848 112.587-580q0-111.152 77.174-188.326Q266.935-845.5 378.087-845.5q111.152 0 188.326 77.174Q643.587-691.152 643.587-580q0 44.478-13.522 83.12-13.521 38.641-36.565 68.163l222.087 222.326q12.674 12.913 12.674 31.945 0 19.033-12.913 31.707-12.674 12.674-31.826 12.674t-31.826-12.674L529.848-364.587q-29.761 23.044-68.642 36.565-38.88 13.522-83.119 13.522Zm0-91q72.848 0 123.674-50.826Q552.587-507.152 552.587-580q0-72.848-50.826-123.674Q450.935-754.5 378.087-754.5q-72.848 0-123.674 50.826Q203.587-652.848 203.587-580q0 72.848 50.826 123.674Q305.239-405.5 378.087-405.5Z" />
             </svg>
-        </div>
-        <div class="nav-btn nav-btn-random">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                <path fill="#ffffff"
-                    d="M659.217-239.043 536.043-362.217l62.261-62.022 122.413 121.695v-54.826q0-18.434 12.696-31.01 12.696-12.577 31.131-12.577 18.434 0 31.011 12.577 12.576 12.576 12.576 31.01v160q0 19.153-13.174 32.327t-32.327 13.174H602.152q-18.435 0-31.011-12.576-12.576-12.577-12.576-31.011 0-18.435 12.576-31.011t31.011-12.576h57.065Zm61.5-420.413-494.63 494.63q-12.196 12.196-30.631 12.315-18.434.12-30.63-12.315-12.196-12.196-12.076-30.63.119-18.435 12.315-30.631l494.152-494.63h-57.065q-18.435 0-31.011-12.696t-12.576-31.131q0-18.434 12.696-31.011 12.696-12.576 31.13-12.576H762.63q19.153 0 32.327 13.174t13.174 32.327v160.239q0 18.434-12.576 31.011-12.577 12.576-31.011 12.576-18.435 0-31.131-12.696-12.696-12.696-12.696-31.13v-56.826Zm-357.065 124.13L169.565-728.652q-12.195-12.196-12.195-30.391 0-18.196 12.195-30.631 12.196-12.435 30.011-12.435 17.815 0 31.011 12.196l194.565 193.326-61.5 61.261Z" />
-            </svg>
-
+        </a>
+        <a href="/#discover-meal" class="nav-btn nav-btn-random">
             <span>Discover a meal</span>
-        </div>
+        </a>
     </nav>
     <header>
         <div class="hero-desc">
@@ -41,13 +36,13 @@
                 </div>
             </div>
             <div class="hero-action">
-                <button class="hero-btn hero-btn-discover">
+                <a href="/#discover-meal" class="hero-btn hero-btn-discover">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                         <path fill="#ffffff"
                             d="M659.217-239.043 536.043-362.217l62.261-62.022 122.413 121.695v-54.826q0-18.434 12.696-31.01 12.696-12.577 31.131-12.577 18.434 0 31.011 12.577 12.576 12.576 12.576 31.01v160q0 19.153-13.174 32.327t-32.327 13.174H602.152q-18.435 0-31.011-12.576-12.576-12.577-12.576-31.011 0-18.435 12.576-31.011t31.011-12.576h57.065Zm61.5-420.413-494.63 494.63q-12.196 12.196-30.631 12.315-18.434.12-30.63-12.315-12.196-12.196-12.076-30.63.119-18.435 12.315-30.631l494.152-494.63h-57.065q-18.435 0-31.011-12.696t-12.576-31.131q0-18.434 12.696-31.011 12.696-12.576 31.13-12.576H762.63q19.153 0 32.327 13.174t13.174 32.327v160.239q0 18.434-12.576 31.011-12.577 12.576-31.011 12.576-18.435 0-31.131-12.696-12.696-12.696-12.696-31.13v-56.826Zm-357.065 124.13L169.565-728.652q-12.195-12.196-12.195-30.391 0-18.196 12.195-30.631 12.196-12.435 30.011-12.435 17.815 0 31.011 12.196l194.565 193.326-61.5 61.261Z" />
                     </svg>
                     <span>Discover a new meal</span>
-                </button>
+                </a>
                 <button class="hero-btn hero-btn-search">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                         <path fill="#eb1700"
@@ -68,20 +63,42 @@
     <div class="meal" id="discover-meal">
         <div class="meal-header">
             <span>Make yourself an amazing meal</span>
-            <h2>Here is a meal recipe for you!</h2>
+            <h1>Here is a meal recipe for you!</h1>
         </div>
 
-        <div class="meal-content">
-            <img src="" alt="" class="meal-img" id="random-meal-img">
-            <div class="meal-desc">
-                <div class="meal-label-name">Dish name:</div>
-                <div class="meal-name" id="random-meal-name">Strawberries Romanoff</div>
-                <div class="meal-label-ingredients">Ingredients:</div>
-                <div class="meal-ingredients" id="random-meal-ingredients"></div>
-                <div class="meal-label-instructions">Instructions:</div>
-                <div class="meal-instructions" id="random-meal-instructions">
-                </div>
+        <div class="hidden" id="loader">
+            <div id="loader-circle"></div>
+        </div>
 
+        <div class="random-meal" id="random-meal">
+            <img src="" alt="" class="random-meal-img" id="random-meal-img">
+            <div class="random-meal-label">Dish name:</div>
+            <div class="random-meal-name" id="random-meal-name"></div>
+        </div>
+
+        <a href="/#discover-meal" class="hero-btn btn-random-meal" id="get-new-meal">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                <path fill="#ffffff"
+                    d="M659.217-239.043 536.043-362.217l62.261-62.022 122.413 121.695v-54.826q0-18.434 12.696-31.01 12.696-12.577 31.131-12.577 18.434 0 31.011 12.577 12.576 12.576 12.576 31.01v160q0 19.153-13.174 32.327t-32.327 13.174H602.152q-18.435 0-31.011-12.576-12.576-12.577-12.576-31.011 0-18.435 12.576-31.011t31.011-12.576h57.065Zm61.5-420.413-494.63 494.63q-12.196 12.196-30.631 12.315-18.434.12-30.63-12.315-12.196-12.196-12.076-30.63.119-18.435 12.315-30.631l494.152-494.63h-57.065q-18.435 0-31.011-12.696t-12.576-31.131q0-18.434 12.696-31.011 12.696-12.576 31.13-12.576H762.63q19.153 0 32.327 13.174t13.174 32.327v160.239q0 18.434-12.576 31.011-12.577 12.576-31.011 12.576-18.435 0-31.131-12.696-12.696-12.696-12.696-31.13v-56.826Zm-357.065 124.13L169.565-728.652q-12.195-12.196-12.195-30.391 0-18.196 12.195-30.631 12.196-12.435 30.011-12.435 17.815 0 31.011 12.196l194.565 193.326-61.5 61.261Z" />
+            </svg>
+            Get a new meal
+        </a>
+
+        <div class="modal-container">
+            <div class="modal-close"></div>
+            <div class="modal" id="modal">
+                <div class="modal-close-btn">Close</div>
+                <div class="modal-content">
+                    <img src="" alt="" class="modal-img" id="modal-meal-img">
+                    <div class="modal-desc">
+                        <div class="modal-label-name">Dish name:</div>
+                        <div class="modal-name" id="modal-meal-name"></div>
+                        <div class="modal-label-ingredients">Ingredients:</div>
+                        <div class="modal-ingredients" id="modal-meal-ingredients"></div>
+                        <div class="modal-label-instructions">Instructions:</div>
+                        <div class="modal-instructions" id="modal-meal-instructions"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

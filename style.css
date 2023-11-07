@@ -12,6 +12,10 @@
   transition: all 0.1s ease-in-out;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 nav {
   display: flex;
   align-items: center;
@@ -24,6 +28,7 @@ nav {
 
 .scroll {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 18px 0px, #eee 0px 0px 0px 0.5px;
+  padding: 0.5rem 2rem;
 }
 
 .logo {
@@ -47,6 +52,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
 }
 
 .nav-btn:hover {
@@ -68,13 +74,14 @@ nav {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-weight: 500;
   margin-left: 1rem;
   border-radius: 4rem;
   padding: 0.4rem 1.5rem 0.4rem 1.4rem;
 }
 
 header {
-  padding: 2rem 4rem;
+  padding: 3rem 4rem;
   display: flex;
   justify-content: space-between;
 }
@@ -114,6 +121,7 @@ header {
   font-size: 1rem;
   font-weight: 500;
   width: fit-content;
+  text-decoration: none;
   border: 2px solid var(--color-accent-light);
 }
 
@@ -166,36 +174,175 @@ header {
 
 .meal-header {
   font-weight: 500;
+  text-align: center;
 }
 
 .meal-header span {
   opacity: 0.8;
 }
 
-.meal-content {
-  margin-top: 2rem;
+.random-meal {
+  padding: 1rem 1rem 1.5rem 1rem;
+  border: 1px solid var(--color-accent-light);
+  background-color: var(--color-accent-lighter);
+  border-radius: 1.5rem;
+  margin: auto;
+  margin-top: 1.5rem;
+  width: min-content;
+  text-align: left;
+}
+
+.random-meal:hover {
+  cursor: pointer;
+}
+
+.random-meal-img,
+.modal-img {
+  width: 20rem;
+  height: fit-content;
+  border-radius: 1rem;
+}
+
+.random-meal-label {
+  margin-top: 0.5rem;
+  color: var(--color-accent);
+  font-weight: 500;
+  padding-left: 0.25rem;
+}
+
+.random-meal-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #000;
+  line-height: 1.75rem;
+  margin-top: 0.25rem;
+  padding-left: 0.25rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#loader {
+  background-color: var(--color-accent-lighter);
+  backdrop-filter: blur(2px);
+  height: 100vh;
+  width: 100vw;
+  z-index: 49;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#loader-circle {
+  margin: auto;
+  border: 5px solid var(--color-accent);
+  border-radius: 50%;
+  border-top: 5px solid #ffffff;
+  width: 50px;
+  height: 50px;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-random-meal {
+  background-color: var(--color-accent);
+  color: white;
+  margin: auto;
+  margin-top: 1.75rem;
+}
+
+.modal-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  padding: 1.5rem;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  display: none;
+}
+
+.modal {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-close {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 49;
+}
+
+.modal-close:hover,
+.modal-close-btn:hover {
+  cursor: pointer;
+}
+
+.modal-close-btn {
+  width: fit-content;
+  background-color: white;
+  color: var(--color-accent);
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  margin-left: auto;
+  margin-right: 1.5rem;
+  z-index: 99;
+}
+
+.modal-content {
   padding: 1rem;
   border-radius: 1.5rem;
   display: flex;
   gap: 1rem;
+  height: calc(100% - 2.5rem);
 }
 
-.meal-desc {
+.modal-content img {
+  z-index: 99;
+}
+
+.modal-desc {
   padding: 1.5rem;
-  border-radius: 0 1rem 1rem 1rem;
-  background-color: var(--color-accent-lighter);
+  border-radius: 1rem;
+  background-color: hsl(5.87deg 100% 93%);
   width: 100%;
+  z-index: 99;
+  overflow-y: scroll;
 }
 
-.meal-img {
-  width: 20rem;
-  height: 100%;
-  border-radius: 1rem 0 1rem 1rem;
+.modal-desc::-webkit-scrollbar {
+  width: 0.75rem;
+  border-radius: 2rem;
+  background-color: white;
 }
 
-.meal-label-name,
-.meal-label-ingredients,
-.meal-label-instructions {
+.modal-desc::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 2rem;
+}
+
+.modal-label-name,
+.modal-label-ingredients,
+.modal-label-instructions {
   color: var(--color-accent);
   font-weight: 500;
   font-size: 1.2rem;
@@ -204,21 +351,21 @@ header {
   line-height: 1.2rem;
 }
 
-.meal-name {
+.modal-name {
   font-size: 1.75rem;
   font-weight: 700;
   color: #000;
   line-height: 1.75rem;
 }
 
-.meal-ingredients {
+.modal-ingredients {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.meal-ingredient {
+.modal-ingredient {
   display: flex;
   padding: 0.5rem 0.75rem;
   background-color: var(--color-accent);
@@ -230,7 +377,7 @@ header {
   font-size: 1rem;
 }
 
-.meal-ingredient img {
+.modal-ingredient img {
   width: 2.5rem;
 }
 
@@ -394,6 +541,5 @@ footer {
   .footer-credits {
     flex-direction: column;
     gap: 1rem;
-    /* text-align: center; */
   }
 }

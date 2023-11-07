@@ -1,3 +1,5 @@
+const loader = document.getElementById("loader");
+
 window.addEventListener("scroll", () => {
   var nav = document.querySelector("nav");
   var scrollClass = "scroll";
@@ -14,16 +16,21 @@ function getRandomMeal() {
 
 function updateRandomMeal(response) {
   const meal = response.meals[0];
-  console.log(meal);
 
-  const mealImg = document.getElementById("random-meal-img");
-  const mealName = document.getElementById("random-meal-name");
+  const randomMealImg = document.getElementById("random-meal-img");
+  const randomMealName = document.getElementById("random-meal-name");
 
-  const mealIngredients = document.getElementById("random-meal-ingredients");
-  const mealInstructions = document.getElementById("random-meal-instructions");
+  randomMealImg.src = meal.strMealThumb;
+  randomMealName.innerText = meal.strMeal;
 
-  mealImg.src = meal.strMealThumb;
-  mealName.innerText = meal.strMeal;
+  const modalMealImg = document.getElementById("modal-meal-img");
+  const modalMealName = document.getElementById("modal-meal-name");
+
+  const mealIngredients = document.getElementById("modal-meal-ingredients");
+  const mealInstructions = document.getElementById("modal-meal-instructions");
+
+  modalMealImg.src = meal.strMealThumb;
+  modalMealName.innerText = meal.strMeal;
 
   const ingredientMeasurePairs = [];
 
@@ -43,7 +50,7 @@ function updateRandomMeal(response) {
     const pair = ingredientMeasurePairs[i];
 
     let ingredientElem = document.createElement("div");
-    ingredientElem.classList.add("meal-ingredient");
+    ingredientElem.classList.add("modal-ingredient");
 
     let ingredientImgElem = document.createElement("img");
     ingredientImgElem.src = `https://www.themealdb.com/images/ingredients/${pair[0]}-Small.png`;
@@ -58,7 +65,45 @@ function updateRandomMeal(response) {
   }
 
   mealInstructions.innerText = meal.strInstructions;
-  console.log(meal.strInstructions);
+
+  loader.classList.add("hidden");
 }
 
 getRandomMeal();
+
+const randomMealCard = document.getElementById("random-meal");
+const modalContainer = document.getElementsByClassName("modal-container")[0];
+
+let isModalOpen = false;
+
+randomMealCard.addEventListener("click", () => {
+  if (!isModalOpen) {
+    modalContainer.style.display = "block";
+    document.body.style.overflow = "hidden";
+    isModalOpen = true;
+  } else {
+    modalContainer.style.display = "none";
+    document.body.style.overflow = "auto";
+    isModalOpen = false;
+  }
+});
+
+const modalCloseBtn = document.getElementsByClassName("modal-close-btn")[0];
+modalCloseBtn.addEventListener("click", () => {
+  modalContainer.style.display = "none";
+  document.body.style.overflow = "auto";
+  isModalOpen = false;
+});
+
+const modalClose = document.getElementsByClassName("modal-close")[0];
+modalClose.addEventListener("click", () => {
+  modalContainer.style.display = "none";
+  document.body.style.overflow = "auto";
+  isModalOpen = false;
+});
+
+const getNewMealBtn = document.getElementById("get-new-meal");
+getNewMealBtn.addEventListener("click", () => {
+  loader.classList.remove("hidden");
+  getRandomMeal();
+});
