@@ -8,6 +8,14 @@ window.addEventListener("scroll", () => {
   else nav.classList.remove(scrollClass);
 });
 
+function showLoader() {
+  loader.classList.remove("hidden");
+}
+
+function hideLoader() {
+  loader.classList.add("hidden");
+}
+
 function getRandomMeal() {
   fetch("https://www.themealdb.com/api/json/v1/1/random.php")
     .then((res) => res.json())
@@ -66,7 +74,7 @@ function updateRandomMeal(response) {
 
   mealInstructions.innerText = meal.strInstructions;
 
-  loader.classList.add("hidden");
+  hideLoader();
 }
 
 getRandomMeal();
@@ -104,6 +112,75 @@ modalClose.addEventListener("click", () => {
 
 const getNewMealBtn = document.getElementById("get-new-meal");
 getNewMealBtn.addEventListener("click", () => {
-  loader.classList.remove("hidden");
+  showLoader();
   getRandomMeal();
 });
+
+async function fetchSearchResult(query) {
+  const response = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
+  );
+
+  if (!response.ok)
+    throw new Error(`Failed to fetch data. Status: ${response.status}`);
+
+  return response.json();
+}
+
+const searchSection = document.getElementById("search");
+const searchForm = document.getElementById("search-form");
+const searchInput = document.getElementById("search-input");
+const searchQuery = document.getElementsByClassName("search-query")[0];
+
+searchForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const query = searchInput.value;
+  searchQuery.innerText = query;
+
+  if (query.trim() === "") alert("Please enter a valid search query.").f;
+  else {
+    showLoader();
+
+    fetchSearchResult(query)
+      .then((result) => displaySearchResult(result))
+      .catch((error) => {
+        console.error("An error occurred:", error);
+      })
+      .finally(() => hideLoader());
+  }
+});
+
+const searchResults = document.getElementsByClassName("search-results")[0];
+const resultsDiv = document.getElementById("results");
+
+function displaySearchResult(result) {
+  const meals = result.meals;
+  console.log(meals);
+
+  searchResults.classList.remove("hidden");
+  searchSection.classList.add("result-found");
+
+  resultsDiv.innerHTML = "";
+
+  if (meals && meals.length > 0) {
+    meals.forEach((meal) => {
+      const mealDiv = document.createElement("div");
+      mealDiv.classList.add("result-meal");
+
+      const mealName = document.createElement("h3");
+      mealName.textContent = meal.strMeal;
+
+      const mealImage = document.createElement("img");
+      mealImage.src = meal.strMealThumb;
+      mealImage.alt = meal.strMeal;
+
+      mealDiv.appendChild(mealName);
+      mealDiv.appendChild(mealImage);
+
+      resultsDiv.appendChild(mealDiv);
+    });
+  } else {
+    resultsDiv.textContent = "No results found.";
+  }
+}

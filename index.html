@@ -14,9 +14,9 @@
 
 <body>
     <nav>
-        <div class="logo">
+        <a href="/#" class="logo">
             <img src="./public/logo.svg" alt="" /><span class="wordmark">FoodSpot</span>
-        </div>
+        </a>
         <a href="/#search" class="nav-btn nav-btn-search">
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                 <path fill="#eb1700"
@@ -43,13 +43,13 @@
                     </svg>
                     <span>Discover a new meal</span>
                 </a>
-                <button class="hero-btn hero-btn-search">
+                <a href="/#search" class="hero-btn hero-btn-search">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                         <path fill="#eb1700"
                             d="M378.087-314.5q-111.152 0-188.326-77.174Q112.587-468.848 112.587-580q0-111.152 77.174-188.326Q266.935-845.5 378.087-845.5q111.152 0 188.326 77.174Q643.587-691.152 643.587-580q0 44.478-13.522 83.12-13.521 38.641-36.565 68.163l222.087 222.326q12.674 12.913 12.674 31.945 0 19.033-12.913 31.707-12.674 12.674-31.826 12.674t-31.826-12.674L529.848-364.587q-29.761 23.044-68.642 36.565-38.88 13.522-83.119 13.522Zm0-91q72.848 0 123.674-50.826Q552.587-507.152 552.587-580q0-72.848-50.826-123.674Q450.935-754.5 378.087-754.5q-72.848 0-123.674 50.826Q203.587-652.848 203.587-580q0 72.848 50.826 123.674Q305.239-405.5 378.087-405.5Z" />
                     </svg>
                     <span>Search</span>
-                </button>
+                </a>
             </div>
         </div>
         <div class="hero-video">
@@ -103,6 +103,21 @@
         </div>
     </div>
 
+    <div class="search" id="search">
+        <h1>Search for a meal</h1>
+        <form action="" class="search-form" id="search-form">
+            <input type="search" name="search" id="search-input" placeholder="Search..">
+            <input type="submit" value="Search" class="search-submit hero-btn">
+        </form>
+    </div>
+
+    <div class="search-results hidden">
+        <h2>Search result for <span class="search-query"></span></h2>
+        <div class="results" id="results">
+
+        </div>
+    </div>
+
     <div class="ribbon">
         <div class="data">
             <img class="data-img" src="./public/gif/meals.gif" />
@@ -120,6 +135,7 @@
             </span>
         </div>
     </div>
+
     <footer>
         <div class="footer-foodspot">
             <div class="footer-about">
