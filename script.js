@@ -1,42 +1,53 @@
+const nav = document.querySelector("nav");
 const loader = document.getElementById("loader");
 
+const randomMealCard = document.getElementById("random-meal");
+const randomMealImg = document.getElementById("random-meal-img");
+const randomMealName = document.getElementById("random-meal-name");
+
+const modalContainer = document.getElementsByClassName("modal-container")[0];
+
+const modalMealImg = document.getElementById("modal-meal-img");
+const modalMealName = document.getElementById("modal-meal-name");
+
+const mealIngredients = document.getElementById("modal-meal-ingredients");
+const mealInstructions = document.getElementById("modal-meal-instructions");
+
+let isModalOpen = false;
+
+const showLoader = () => loader.classList.remove("hidden");
+const hideLoader = () => loader.classList.add("hidden");
+
 window.addEventListener("scroll", () => {
-  var nav = document.querySelector("nav");
   var scrollClass = "scroll";
 
   if (window.scrollY > 0) nav.classList.add(scrollClass);
   else nav.classList.remove(scrollClass);
 });
 
-function showLoader() {
-  loader.classList.remove("hidden");
-}
-
-function hideLoader() {
-  loader.classList.add("hidden");
-}
+getRandomMeal();
 
 function getRandomMeal() {
   fetch("https://www.themealdb.com/api/json/v1/1/random.php")
     .then((res) => res.json())
-    .then((response) => updateRandomMeal(response));
+    .then((response) => updateRandomMeal(response))
+    .catch((error) => {
+      alert("An error occurred, Try refreshing. Error: ", error);
+    });
 }
 
 function updateRandomMeal(response) {
   const meal = response.meals[0];
 
-  const randomMealImg = document.getElementById("random-meal-img");
-  const randomMealName = document.getElementById("random-meal-name");
-
   randomMealImg.src = meal.strMealThumb;
   randomMealName.innerText = meal.strMeal;
 
-  const modalMealImg = document.getElementById("modal-meal-img");
-  const modalMealName = document.getElementById("modal-meal-name");
+  updateModal(meal);
 
-  const mealIngredients = document.getElementById("modal-meal-ingredients");
-  const mealInstructions = document.getElementById("modal-meal-instructions");
+  hideLoader();
+}
 
+function updateModal(meal) {
   modalMealImg.src = meal.strMealThumb;
   modalMealName.innerText = meal.strMeal;
 
@@ -57,13 +68,13 @@ function updateRandomMeal(response) {
   for (let i = 0; i < ingredientMeasurePairs.length; i++) {
     const pair = ingredientMeasurePairs[i];
 
-    let ingredientElem = document.createElement("div");
+    const ingredientElem = document.createElement("div");
     ingredientElem.classList.add("modal-ingredient");
 
-    let ingredientImgElem = document.createElement("img");
+    const ingredientImgElem = document.createElement("img");
     ingredientImgElem.src = `https://www.themealdb.com/images/ingredients/${pair[0]}-Small.png`;
 
-    let ingredientNameElem = document.createElement("span");
+    const ingredientNameElem = document.createElement("span");
     ingredientNameElem.classList.add("meal-ingredient-name");
     ingredientNameElem.innerHTML = pair[0] + "<br>" + pair[1];
 
@@ -73,18 +84,11 @@ function updateRandomMeal(response) {
   }
 
   mealInstructions.innerText = meal.strInstructions;
-
-  hideLoader();
 }
 
-getRandomMeal();
+randomMealCard.addEventListener("click", handleModal);
 
-const randomMealCard = document.getElementById("random-meal");
-const modalContainer = document.getElementsByClassName("modal-container")[0];
-
-let isModalOpen = false;
-
-randomMealCard.addEventListener("click", () => {
+function handleModal() {
   if (!isModalOpen) {
     modalContainer.style.display = "block";
     document.body.style.overflow = "hidden";
@@ -94,7 +98,7 @@ randomMealCard.addEventListener("click", () => {
     document.body.style.overflow = "auto";
     isModalOpen = false;
   }
-});
+}
 
 const modalCloseBtn = document.getElementsByClassName("modal-close-btn")[0];
 modalCloseBtn.addEventListener("click", () => {
@@ -116,17 +120,6 @@ getNewMealBtn.addEventListener("click", () => {
   getRandomMeal();
 });
 
-async function fetchSearchResult(query) {
-  const response = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
-  );
-
-  if (!response.ok)
-    throw new Error(`Failed to fetch data. Status: ${response.status}`);
-
-  return response.json();
-}
-
 const searchSection = document.getElementById("search");
 const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
@@ -142,21 +135,29 @@ searchForm.addEventListener("submit", async (event) => {
   else {
     showLoader();
 
-    fetchSearchResult(query)
-      .then((result) => displaySearchResult(result))
-      .catch((error) => {
-        console.error("An error occurred:", error);
-      })
-      .finally(() => hideLoader());
+    fetchSearchResult(query);
   }
 });
+
+function fetchSearchResult(query) {
+  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
+    .then((res) => res.json())
+    .then((response) => {
+      displaySearchResult(response);
+    })
+    .catch((error) => {
+      alert("An error occurred, Try refreshing. Error: ", error);
+    })
+    .finally(() => {
+      hideLoader();
+    });
+}
 
 const searchResults = document.getElementsByClassName("search-results")[0];
 const resultsDiv = document.getElementById("results");
 
 function displaySearchResult(result) {
   const meals = result.meals;
-  console.log(meals);
 
   searchResults.classList.remove("hidden");
   searchSection.classList.add("result-found");
@@ -183,4 +184,23 @@ function displaySearchResult(result) {
   } else {
     resultsDiv.textContent = "No results found.";
   }
+
+  handleSearchResultModal(meals);
+}
+
+function handleSearchResultModal(meals) {
+  resultsDiv.addEventListener("click", (event) => {
+    const currentElement = event.target;
+
+    const mealItem = currentElement.closest(".result-meal");
+
+    if (mealItem) {
+      const index = Array.from(mealItem.parentElement.children).indexOf(
+        mealItem
+      );
+
+      handleModal();
+      updateModal(meals[index]);
+    }
+  });
 }
