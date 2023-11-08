@@ -140,7 +140,7 @@ searchForm.addEventListener("submit", async (event) => {
 });
 
 function fetchSearchResult(query) {
-  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${query}`)
     .then((res) => res.json())
     .then((response) => {
       displaySearchResult(response);
